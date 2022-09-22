@@ -1,21 +1,49 @@
 addLayer("1", {
-    name: "Bits", // This is optional, only used in a few places, If absent it just uses the layer id.
-    symbol: "B", // This appears on the layer's node. Default is the id with the first letter capitalized
+    name: "Generators", // This is optional, only used in a few places, If absent it just uses the layer id.
+    symbol: "G", // This appears on the layer's node. Default is the id with the first letter capitalized
     position: 0, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
     startData() { return {
         unlocked: true,
 		points: new Decimal(0),
     }},
-    color: "#4BDC13",
+    color: "#E63244",
+	
     requires: new Decimal(10), // Can be a function that takes requirement increases into account
-    resource: "Bits", // Name of prestige currency
+    resource: "Generators", // Name of prestige currency
     baseResource: "points", // Name of resource prestige is based on
     baseAmount() {return player.points}, // Get the current amount of baseResource
+	tabFormat: [
+        "main-display",
+        "prestige-button",
+        ["blank", "25px"],
+        ["display-text", () => "<h5 style='opacity:0.5'>Beginner tip: Press the button to turn Points into Generators</h5>"],
+        ["blank", "15px"],
+        ["microtabs", "stuff"],
+        ["blank", "35px"],
+    ],
+	microtabs: {
+        stuff: {
+            "Upgrades": {
+                content: [
+                    ["blank", "15px"],
+                    "upgrades"
+                ]
+            },
+			"Power": {
+				content: [
+					["blank", "15px"],
+					["display-text", () => "<h5 style='opacity:0.5'>Nothing here yet, check back next time!</h5>"],
+				]
+			}
+        },
+	},
+	
     type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
     exponent: 0.5, // Prestige currency exponent
+	
     gainMult() {
         let mult = new Decimal(1)
-        if (hasUpgrade('1', 11)) mult = mult.times(upgradeEffect('1', 11))
+        //if (hasUpgrade('1', 11)) mult = mult.times(upgradeEffect('1', 11))
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
@@ -27,21 +55,14 @@ addLayer("1", {
     ],*/
 	upgrades: {
 		11: {
-				title: "Adder",
-				description: "Bits lower the cost of Bits",
+				title: "Start the Generators",
+				description: "Unlocks the Power Tab",
 				cost: new Decimal(5),
-				effect() {
-				return player["1"].points.add(1).pow(0.15)
-				},
-			},/*
-		12: {
-				title: "Using the Generators",
-				description: "I thought they were paperweights!",
-				cost: new Decimal(2),
-				effect() {
-					return player[this.layer].points.add(1).pow(0.5)
-				},
-				effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+			},
+		/*12: {
+				title: "ALU",
+				description: "Unlocks the Addition Tab",
+				cost: new Decimal(25),
         },
 		13: {
 				title: "Feeding the Generators Points",
@@ -53,4 +74,6 @@ addLayer("1", {
         },*/
     },
     layerShown(){return true}
+	
+	
 })
