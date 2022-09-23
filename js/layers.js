@@ -5,6 +5,7 @@ addLayer("1", {
     startData() { return {
         unlocked: true,
 		points: new Decimal(0),
+		power: new Decimal(0),
     }},
     color: "#E63244",
 	
@@ -30,9 +31,14 @@ addLayer("1", {
                 ]
             },
 			"Power": {
+				unlocked: () => hasUpgrade("1", 11),
 				content: [
+					
 					["blank", "15px"],
-					["display-text", () => "<h5 style='opacity:0.5'>Nothing here yet, check back next time!</h5>"],
+					["display-text",
+					function() { return 'You have ' + format(player.power) + ' Power.' },
+					{ "color": "gray", "font-size": "15px", /*"font-family": "Comic Sans MS"*/ }],
+					"Buyables"
 				]
 			}
         },
@@ -40,7 +46,6 @@ addLayer("1", {
 	
     type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
     exponent: 0.5, // Prestige currency exponent
-	
     gainMult() {
         let mult = new Decimal(1)
         //if (hasUpgrade('1', 11)) mult = mult.times(upgradeEffect('1', 11))
@@ -74,6 +79,5 @@ addLayer("1", {
         },*/
     },
     layerShown(){return true}
-	
 	
 })
