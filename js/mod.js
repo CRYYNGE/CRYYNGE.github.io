@@ -13,11 +13,15 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.0.4",
-	name: "Stuck",
+	num: "0.0.4.1",
+	name: "Minor Patch",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
+	<h3>v0.0.4.1</h3><br>
+		- Added Power Generation, maybe<br>
+		- Fixed some issues with the UI
+
 	<h3>v0.0.4</h3><br>
 		- Changed Generators to Power<br>
 		
