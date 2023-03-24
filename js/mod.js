@@ -1,11 +1,11 @@
 let modInfo = {
 	name: "Working Title",
-	id: "VanPres",
-	author: "VannyDev",
+	id: "VP",
+	author: "V",
 	pointsName: "Points",
 	modFiles: ["layers.js", "tree.js"],
 
-	discordName: "VannyDev ❥#0412",
+	discordName: "VampDev ❥#0412",
 	discordLink: "",
 	initialStartPoints: new Decimal (10), // Used for hard resets and new players
 	offlineLimit: 0,  // In hours
@@ -13,11 +13,14 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.0.3",
-	name: "You have the Power!",
+	num: "0.0.4",
+	name: "Stuck",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
+	<h3>v0.0.4</h3><br>
+		- Changed Generators to Power<br>
+		
 	<h3>v0.0.3</h3><br>
 		- Added Power<br>
 		- Fixed a bug making Power appear early`
