@@ -51,7 +51,11 @@ addLayer("1", {
 		rows: 1,
         cols: 3,
         11: {
-            cost(x) {return new Decimal(1.12).pow(x || getBuyableAmount(this.layer, this.id)).div()}
+
+            display() {
+                return "which are boosting your point gain by ×" + format(tmp[this.layer].buyables[this.id].effect) + ".\n\
+                    Cost: " + format(tmp[this.layer].buyables[this.id].cost) + " Power"
+            }
         }
     },
     layerShown(){return true}
